@@ -1,0 +1,52 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/user",
+      "DownstreamHostAndPorts": [
+        { "Host": "localhost", "Port": 5002 }
+      ],
+      "UpstreamPathTemplate": "/gateway/user",
+      "UpstreamHttpMethod": ["GET"],
+      "CacheOptions": {
+        "TtlSeconds": 30,  
+        "SlidingExpirationInSeconds": 60 
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/car",
+      "DownstreamHostAndPorts": [
+        { "Host": "localhost", "Port": 5001 }
+      ],
+      "UpstreamPathTemplate": "/gateway/car",
+      "UpstreamHttpMethod": ["GET"],
+      "CacheOptions": {
+        "TtlSeconds": 0,  
+        "SlidingExpirationInSeconds": 0 
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/user",
+      "DownstreamHostAndPorts": [
+        { "Host": "localhost", "Port": 5002 }
+      ],
+      "UpstreamPathTemplate": "/gateway/combined",
+      "UpstreamHttpMethod": ["GET"],
+      "ResponseAggregation": {
+        "AggregationType": "Merge",
+        "Responses": [
+          {
+            "DownstreamPathTemplate": "/api/user",
+            "UpstreamPathTemplate": "/gateway/combined"
+          },
+          {
+            "DownstreamPathTemplate": "/api/car",
+            "UpstreamPathTemplate": "/gateway/combined"
+          }
+        ]
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5000"
+  }
+}

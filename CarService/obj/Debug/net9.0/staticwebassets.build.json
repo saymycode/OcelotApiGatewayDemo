@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "BGv/opv+k5Iv5TdxToh4aX3vv5spJj+UUzklPIhGVsI=",
+  "Source": "CarService",
+  "BasePath": "_content/CarService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
